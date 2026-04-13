@@ -1,4 +1,5 @@
-C'est une application Symfony avec API Platform. À savoir qu'en haut du sujet, il est précisé que nous pouvons utiliser du PHP, j'ai donc choisi Symfony. J'ai trouvé que cette technologie était appropriée car elle facilite la création d'endpoints et la mise en place du CRUD, tout en permettant de générer facilement des fixtures pour les tests.
+J'ai fait le choix de créer des utilisateurs avec trois rôles : Admin, Chauffeur et Client. Cependant, j'ai commis une faute d'inattention : j'ai créé une table User contenant ces trois rôles, tout en créant parallèlement une table Client distincte.
+C'est une incohérence que je n'ai pas eu le temps de corriger, mais j'aurais préféré utiliser une seule table d'utilisateurs avec ces trois rôles pour exploiter au maximum le système de rôles de Symfony.
 
 Url github: https://github.com/cdwfs26-012/api
 URL de la doc : http://127.0.0.1:8000/api/docs
