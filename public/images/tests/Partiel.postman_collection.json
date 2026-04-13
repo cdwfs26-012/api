@@ -1,0 +1,58 @@
+{
+  "info": {
+    "name": "API Partiel - Livraison",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get Deliveries",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test(\"Status code is 200\", function () {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "",
+              "pm.test(\"Response is JSON\", function () {",
+              "    pm.response.to.be.json;",
+              "});"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/deliveries",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "deliveries"
+          ]
+        }
+      }
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE3NzYwODc3MDQsImV4cCI6MTc3NjA5MTMwNCwicm9sZXMiOlsiUk9MRV9BRE1JTiIsIlJPTEVfVVNFUiJdLCJ1c2VybmFtZSI6ImFkbWluQGxlZ2VuZHJlLmZyIn0.gUQk8uO9n_XZapJ6K1Snaj_83kjb6xvbfEuuQOqu10-OR2_XRYAdAbPhkGqrVVwV4O9IA3QfIfWh8OXf3Hgx8UIGAqDJ5P-rElS8Lo2b8cdPnCfqBn5i0PtabLINMqWiyi1-Esj3g9GB6ic1VAzumIzGwZ2yMXcbKnuj_3d4bV2q_mtjo6-Wx6R0FQcg8G2NtbstsXmTUK6CtpEKS1OM_6ypF-C4ib604PnJLUgOIngbr-6N97OMHHRDclXNKDGAxolQxIvADUKeKD_YWGXuuxX_R8gwCiCHiKIhFVzsiES3sI7_1OMWQbXyNcZRTcPZtimfH8sD7lbimRaFbELM7Q",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://127.0.0.1:8000"
+    }
+  ]
+}

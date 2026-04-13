@@ -1,0 +1,57 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        dev:
+            pattern: ^/_(profiler|wdt)
+            security: false
+
+        auth:
+            pattern: ^/auth
+            stateless: true
+            json_login:
+                check_path: /auth
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
+
+    access_control:
+        # Autoriser l'accès public à l'authentification et à la doc Swagger
+        - { path: ^/api/auth, roles: PUBLIC_ACCESS }
+        - { path: ^/api/docs, roles: PUBLIC_ACCESS }
+
+        # Rôles spécifiques par ressources (C15 - Gestion des rôles)
+        # Les chauffeurs doivent pouvoir voir les tournées
+        - { path: ^/api/tours, roles: [ ROLE_CHAUFFEUR, ROLE_ADMIN ] }
+
+        # Les clients doivent pouvoir voir leurs livraisons
+        - { path: ^/api/deliveries, roles: [ ROLE_CLIENT, ROLE_CHAUFFEUR, ROLE_ADMIN ] }
+
+        # Seul l'admin peut gérer les marchandises ou les chauffeurs (WMS/ERP)
+        - { path: ^/api/products, roles: [ ROLE_ADMIN ] }
+        - { path: ^/api/drivers, roles: [ ROLE_ADMIN ] }
+
+        # Par défaut, tout le reste nécessite une authentification
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
+
+when@test:
+    security:
+        password_hashers:
+            Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface:
+                algorithm: auto
+                cost: 4
+                time_cost: 3
+                memory_cost: 10

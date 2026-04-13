@@ -1,0 +1,65 @@
+# =====================
+# Symfony / API Platform
+# =====================
+
+/migrations/
+/vendor/
+/var/
+/var/cache/
+/var/log/
+/var/sessions/
+
+/public/bundles/
+
+# Symfony environment files
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# PHPStorm / IDE
+.idea/
+.vscode/
+*.iml
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# PHPUnit
+/phpunit.xml
+/phpunit.xml.dist
+
+# Composer
+composer.phar
+
+# Node (si frontend ou assets)
+node_modules/
+/npm-debug.log
+/yarn-error.log
+yarn.lock
+package-lock.json
+
+# Build tools
+/public/build/
+/public/assets/build/
+
+# Logs
+*.log
+
+# Misc
+*.cache
+*.tmp
+*.swp
+
+# API Platform generated docs (optionnel)
+/var/api-platform/
+
+###> lexik/jwt-authentication-bundle ###
+/config/jwt/*.pem
+###< lexik/jwt-authentication-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
